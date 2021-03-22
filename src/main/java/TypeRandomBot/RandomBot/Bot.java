@@ -44,7 +44,7 @@ public class Bot extends ListenerAdapter {
 		// GatewayIntent.GUILD_PRESENCES)
 		// .addEventListeners(new Bot())
 		// .build();
-		List<GatewayIntent> intents = new ArrayList<>();
+		List<GatewayIntent> intents = new ArrayList<GatewayIntent>();
 		intents.add(GatewayIntent.GUILD_VOICE_STATES);
 		intents.add(GatewayIntent.GUILD_MESSAGES);
 		intents.add(GatewayIntent.DIRECT_MESSAGES);
