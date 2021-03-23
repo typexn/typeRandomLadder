@@ -1,0 +1,1 @@
+worker: java -jar target/RandomBot-0.0.1-SNAPSHOT.jar
