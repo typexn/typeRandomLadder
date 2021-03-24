@@ -59,13 +59,27 @@ public class Bot extends ListenerAdapter {
 		}
 		if (msg.getContentRaw().equals("!한슬기")) {
 			MessageChannel channel = event.getChannel();
-			channel.sendMessage("네. 선장님. 룰루, 소라카, 조이, 세라핀, 이렐리아(?)")
+			channel.sendMessage("갱플랭크.D.한슬기. 룰루, 소라카, 조이, 세라핀, 이렐리아(?)")
 			.queue();
 		}
 		if (msg.getContentRaw().equals("!윤영섭")) {
 			MessageChannel channel = event.getChannel();
-			channel.sendMessage("yes. Master. 키아나.")
+			channel.sendMessage("Master. 키아나. 랜덤픽")
 			.queue();
+		}
+		if (msg.getContentRaw().equals("!도치임")) {
+			MessageChannel channel = event.getChannel();
+			channel.sendMessage("도...치임??")
+			.queue();
+		}
+		if (msg.getContentRaw().equals("!베바지")) {
+			MessageChannel channel = event.getChannel();
+			channel.sendMessage("지고간다고? 막판하실분?")
+			.queue();
+		}
+		if (msg.getContentRaw().equals("!김정욱")) {
+			MessageChannel channel = event.getChannel();
+			channel.sendMessage("봇 제작자. 봇 오류나도 내탓아님").queue();
 		}
 		if (msg.getContentRaw().equals("!김종오")) {
 			MessageChannel channel = event.getChannel();
@@ -73,7 +87,7 @@ public class Bot extends ListenerAdapter {
 		}
 		if (msg.getContentRaw().equals("!안규원")) {
 			MessageChannel channel = event.getChannel();
-			channel.sendMessage("탈론 장인. Twtich 알로오에 많이시청해주세요. 탈론, 키아나").queue();
+			channel.sendMessage("탈론 장인. twtich 알로오에 많이시청해주세요. 탈론, 키아나").queue();
 		}
 		if (msg.getContentRaw().equals("!종오")) {
 			MessageChannel channel = event.getChannel();
@@ -85,11 +99,11 @@ public class Bot extends ListenerAdapter {
 		}
 		if (msg.getContentRaw().equals("!김지혁")) {
 			MessageChannel channel = event.getChannel();
-			channel.sendMessage("샤코, 다리우스, 말파이트, 칼리스타, 람머스").queue();
+			channel.sendMessage("샤코, 다리우스, 말파이트, 칼리스타, 람머스, 나르").queue();
 		}
 		if (msg.getContentRaw().equals("!양희권")) {
 			MessageChannel channel = event.getChannel();
-			channel.sendMessage("말자하, 말파이트, 에코, 진 밍...").queue();
+			channel.sendMessage("말자하, 말파이트, 마오카이, 에코, 진, 노틸러스 밍...").queue();
 		}
 		if (msg.getContentRaw().equals("!나혜진")) {
 			MessageChannel channel = event.getChannel();
@@ -196,7 +210,7 @@ public class Bot extends ListenerAdapter {
 					}
 				}
 				else if(nameList.size() > 10) {
-					channel.sendMessage("사람이 너무 많아... 나머지는 관전이에요.").queue();
+					channel.sendMessage("사람이 너무 많아서 10명까지만 채우고 나머지는 관전이에요.").queue();
 					channel.sendMessage("1팀 top : " + nameList.get(0).toString()).queue();
 					channel.sendMessage("1팀 jug : " + nameList.get(1).toString()).queue();
 					channel.sendMessage("1팀 mid : " + nameList.get(2).toString()).queue();
