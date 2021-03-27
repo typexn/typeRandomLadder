@@ -111,7 +111,11 @@ public class Bot extends ListenerAdapter {
 		}
 		if (msg.getContentRaw().equals("!이주연")) {
 			MessageChannel channel = event.getChannel();
-			channel.sendMessage("데이터가 부족해요. ^0^").queue();
+			channel.sendMessage("야 철 코. ^0^").queue();
+		}
+		if (msg.getContentRaw().equals("!상은")) {
+			MessageChannel channel = event.getChannel();
+			channel.sendMessage("데이터가 부족해요.").queue();
 		}
 		if (msg.getContentRaw().equals("!김태경")) {
 			MessageChannel channel = event.getChannel();
