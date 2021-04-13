@@ -55,11 +55,11 @@ public class Bot extends ListenerAdapter {
 		}
 		if (msg.getContentRaw().equals("!나원태")) {
 			MessageChannel channel = event.getChannel();
-			channel.sendMessage("20171****4 경희대 수학과 17학번 나원태입니다.").queue();
+			channel.sendMessage("아칼리, 비에고, 피오라, 베인").queue();
 		}
 		if (msg.getContentRaw().equals("!한슬기")) {
 			MessageChannel channel = event.getChannel();
-			channel.sendMessage("갱플랭크.D.한슬기. 룰루, 소라카, 조이, 세라핀, 이렐리아(?)")
+			channel.sendMessage("룰루, 소라카, 나미, 조이, 세라핀, 이렐리아, 오른")
 			.queue();
 		}
 		if (msg.getContentRaw().equals("!윤영섭")) {
@@ -95,15 +95,15 @@ public class Bot extends ListenerAdapter {
 		}
 		if (msg.getContentRaw().equals("!차승훈")) {
 			MessageChannel channel = event.getChannel();
-			channel.sendMessage("케넨, 요네, 야스오, 이렐리아, 카시오페아, 루시안").queue();
+			channel.sendMessage("케넨, 요네, 야스오, 이렐리아, 카시오페아, 루시안, 에코").queue();
 		}
 		if (msg.getContentRaw().equals("!김지혁")) {
 			MessageChannel channel = event.getChannel();
-			channel.sendMessage("샤코, 다리우스, 말파이트, 칼리스타, 람머스, 나르").queue();
+			channel.sendMessage("샤코, 다리우스, 말파이트, 칼리스타, 람머스, 나르, 코그모(칼바람)").queue();
 		}
 		if (msg.getContentRaw().equals("!양희권")) {
 			MessageChannel channel = event.getChannel();
-			channel.sendMessage("말자하, 말파이트, 마오카이, 에코, 진, 노틸러스 밍...").queue();
+			channel.sendMessage("말자하, 말파이트, 마오카이, 에코, 진, 노틸러스, 니코 밍...").queue();
 		}
 		if (msg.getContentRaw().equals("!나혜진")) {
 			MessageChannel channel = event.getChannel();
@@ -119,23 +119,23 @@ public class Bot extends ListenerAdapter {
 		}
 		if (msg.getContentRaw().equals("!김태경")) {
 			MessageChannel channel = event.getChannel();
-			channel.sendMessage("레오나, 다이애나, 가렌, 요네, 갈리오").queue();
+			channel.sendMessage("레오나, 다이애나, 가렌, 요네, 갈리오, 쉔").queue();
 		}
 		if (msg.getContentRaw().equals("!최종문")) {
 			MessageChannel channel = event.getChannel();
-			channel.sendMessage("잭스, 아트록스, 레넥톤, 볼리베어, 렝가, 나서스, 빅토르, 모데카이저. ㅈㅅ 싸가지 ㅈㄴ없었습니다.").queue();
+			channel.sendMessage("잭스, 아트록스, 레넥톤, 볼리베어, 렝가, 나서스, 빅토르, 모데카이저, 바루스(방관)").queue();
 		}
 		if (msg.getContentRaw().equals("!김태현")) {
 			MessageChannel channel = event.getChannel();
-			channel.sendMessage("말파이트, 가렌, 이즈리얼, 노틸러스, 문도박사").queue();
+			channel.sendMessage("말파이트, 가렌, 이즈리얼, 트리스타나, 노틸러스, 문도박사").queue();
 		}
 		if (msg.getContentRaw().equals("!김서연")) {
 			MessageChannel channel = event.getChannel();
-			channel.sendMessage("럭 ㅋ 스 ㅋ").queue();
+			channel.sendMessage("럭스, 제라스").queue();
 		}
 		if (msg.getContentRaw().equals("!유승호")) {
 			MessageChannel channel = event.getChannel();
-			channel.sendMessage("원 딜").queue();
+			channel.sendMessage("시비르, 자야, 세나").queue();
 		}
 		if (msg.getContentRaw().equals("!이한빈")) {
 			MessageChannel channel = event.getChannel();
@@ -147,7 +147,7 @@ public class Bot extends ListenerAdapter {
 		}
 		if (msg.getContentRaw().equals("!조재관")) {
 			MessageChannel channel = event.getChannel();
-			channel.sendMessage("친구아님").queue();
+			channel.sendMessage("조이, 세라핀").queue();
 		}
 		if (msg.getContentRaw().equals("!방제준")) {
 			MessageChannel channel = event.getChannel();
@@ -157,9 +157,17 @@ public class Bot extends ListenerAdapter {
 			MessageChannel channel = event.getChannel();
 			channel.sendMessage("야스오").queue();
 		}
+		if (msg.getContentRaw().equals("!김기휘")) {
+			MessageChannel channel = event.getChannel();
+			channel.sendMessage("아리, 신드라, 럼블, 제이스").queue();
+		}
 		if (msg.getContentRaw().equals("!김도현")) {
 			MessageChannel channel = event.getChannel();
-			channel.sendMessage("카 타 리 나, 리 븐").queue();
+			channel.sendMessage("카타리나, 리븐, 녹턴, 다리우스").queue();
+		}
+		if (msg.getContentRaw().equals("!차원철")) {
+			MessageChannel channel = event.getChannel();
+			channel.sendMessage("제드, 엘리스, 루시안").queue();
 		}
 		if (msg.getContentRaw().equals("!사다리")) {
 			Optional<List<Member>> optional = event.getGuild().getVoiceChannels().stream().filter(
@@ -172,16 +180,16 @@ public class Bot extends ListenerAdapter {
 				List<String> nameList = members.stream().map(Bot::getUserName).collect(Collectors.toList());
 				if(nameList.size() == 10) {
 					Collections.shuffle(nameList);
-					channel.sendMessage("1팀 top : " + nameList.get(0).toString()).queue();
-					channel.sendMessage("1팀 jug : " + nameList.get(1).toString()).queue();
-					channel.sendMessage("1팀 mid : " + nameList.get(2).toString()).queue();
-					channel.sendMessage("1팀 adc : " + nameList.get(3).toString()).queue();
-					channel.sendMessage("1팀 spt : " + nameList.get(4).toString()).queue();
-					channel.sendMessage("2팀 top : " + nameList.get(5).toString()).queue();
-					channel.sendMessage("2팀 jug : " + nameList.get(6).toString()).queue();
-					channel.sendMessage("2팀 mid : " + nameList.get(7).toString()).queue();
-					channel.sendMessage("2팀 adc : " + nameList.get(8).toString()).queue();
-					channel.sendMessage("2팀 spt : " + nameList.get(9).toString()).queue();
+					channel.sendMessage("1팀 top : " + nameList.get(0).toString() +"\n"
+							+ "1팀 jug : " + nameList.get(1).toString() +"\n"
+							+ "1팀 mid : " + nameList.get(2).toString() +"\n"
+							+ "1팀 adc : " + nameList.get(3).toString() +"\n"
+							+ "1팀 spt : " + nameList.get(4).toString() +"\n"
+							+ "2팀 top : " + nameList.get(5).toString() +"\n"
+							+ "2팀 jug : " + nameList.get(6).toString() +"\n"
+							+ "2팀 mid : " + nameList.get(7).toString() +"\n"
+							+ "2팀 adj : " + nameList.get(8).toString() +"\n"
+							+ "2팀 spt : " + nameList.get(9).toString()).queue();
 				}
 				else if(nameList.size() == 9) {
 					nameList.add("지각생");
