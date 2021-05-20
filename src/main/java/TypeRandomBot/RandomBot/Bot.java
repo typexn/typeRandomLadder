@@ -21,6 +21,14 @@ import net.dv8tion.jda.api.utils.MemberCachePolicy;
 
 public class Bot extends ListenerAdapter {
 
+	boolean checkTopCondition = false;
+	boolean checkJungleCondition = false;
+	boolean checkMidCondition = false;
+	boolean checkAdcCondition = false;
+	boolean checkSupportCondition = false;
+	boolean checkTeamOneCondition = false;
+	boolean checkTeamTwoCondition = false;
+
 	public static String getUserName(Member member) {
 		String userName = member.getNickname();
 		if (userName == null) {
@@ -29,7 +37,7 @@ public class Bot extends ListenerAdapter {
 
 		return userName;
 	}
-	
+
 	public static void main(String[] args) throws LoginException {
 		String token = System.getenv("TOKEN");
 		List<GatewayIntent> intents = new ArrayList<GatewayIntent>();
@@ -49,6 +57,13 @@ public class Bot extends ListenerAdapter {
 	public void onMessageReceived(MessageReceivedEvent event) {
 		Message msg = event.getMessage();
 		Member owner = event.getMember();
+		ArrayList<String> topExceptMember = new ArrayList<>();
+		ArrayList<String> jungleExceptMember = new ArrayList<>();
+		ArrayList<String> midExceptMember = new ArrayList<>();
+		ArrayList<String> adcExceptMember = new ArrayList<>();
+		ArrayList<String> supportExceptMember = new ArrayList<>();
+		ArrayList<String> teamOneExceptMember = new ArrayList<>();
+		ArrayList<String> teamTwoExceptMember = new ArrayList<>();
 		if (msg.getContentRaw().equals("!ping")) {
 			MessageChannel channel = event.getChannel();
 			channel.sendMessage("그런기능 안추가했어요").queue();
@@ -59,23 +74,19 @@ public class Bot extends ListenerAdapter {
 		}
 		if (msg.getContentRaw().equals("!한슬기")) {
 			MessageChannel channel = event.getChannel();
-			channel.sendMessage("룰루, 소라카, 나미, 조이, 세라핀, 이렐리아, 오른")
-			.queue();
+			channel.sendMessage("룰루, 소라카, 나미, 조이, 세라핀, 이렐리아, 오른").queue();
 		}
 		if (msg.getContentRaw().equals("!윤영섭")) {
 			MessageChannel channel = event.getChannel();
-			channel.sendMessage("Master. 키아나. 랜덤픽")
-			.queue();
+			channel.sendMessage("Master. 키아나. 랜덤픽").queue();
 		}
 		if (msg.getContentRaw().equals("!도치임")) {
 			MessageChannel channel = event.getChannel();
-			channel.sendMessage("도...치임??")
-			.queue();
+			channel.sendMessage("도...치임??").queue();
 		}
 		if (msg.getContentRaw().equals("!베바지")) {
 			MessageChannel channel = event.getChannel();
-			channel.sendMessage("지고간다고? 막판하실분?")
-			.queue();
+			channel.sendMessage("지고간다고? 막판하실분?").queue();
 		}
 		if (msg.getContentRaw().equals("!김정욱")) {
 			MessageChannel channel = event.getChannel();
@@ -163,11 +174,478 @@ public class Bot extends ListenerAdapter {
 		}
 		if (msg.getContentRaw().equals("!김도현")) {
 			MessageChannel channel = event.getChannel();
-			channel.sendMessage("카타리나, 리븐, 녹턴, 다리우스").queue();
+			channel.sendMessage("카타리나, 리븐, 베인, 비에고").queue();
 		}
 		if (msg.getContentRaw().equals("!차원철")) {
 			MessageChannel channel = event.getChannel();
 			channel.sendMessage("제드, 엘리스, 루시안").queue();
+		}
+		if (msg.getContentRaw().equals("!조건 탑")) {
+			MessageChannel channel = event.getChannel();
+			Message message = channel.sendMessage("탑에서 제외할 사람의 번호를 입력하세요.").complete();
+			checkTopCondition = true;
+		}
+		if (msg.getContentRaw().equals("!조건 정글")) {
+			MessageChannel channel = event.getChannel();
+			Message message = channel.sendMessage("정글에서 제외할 사람의 번호를 입력하세요.").complete();
+			checkJungleCondition = true;
+		}
+		if (msg.getContentRaw().equals("!조건 미드")) {
+			MessageChannel channel = event.getChannel();
+			Message message = channel.sendMessage("미드에서 제외할 사람의 번호를 입력하세요.").complete();
+			checkMidCondition = true;
+		}
+		if (msg.getContentRaw().equals("!조건 원딜")) {
+			MessageChannel channel = event.getChannel();
+			Message message = channel.sendMessage("원딜에서 제외할 사람의 번호를 입력하세요.").complete();
+			checkAdcCondition = true;
+		}
+		if (msg.getContentRaw().equals("!조건 서폿")) {
+			MessageChannel channel = event.getChannel();
+			Message message = channel.sendMessage("서폿에서 제외할 사람의 번호를 입력하세요.").complete();
+			checkSupportCondition = true;
+		}
+		if (msg.getContentRaw().equals("!조건 팀1")) {
+			MessageChannel channel = event.getChannel();
+			Message message = channel.sendMessage("1팀에 고정할 사람의 번호를 입력하세요.").complete();
+			checkTeamOneCondition = true;
+		}
+		if (msg.getContentRaw().equals("!조건 팀2")) {
+			MessageChannel channel = event.getChannel();
+			Message message = channel.sendMessage("2팀에 고정할 사람의 번호를 입력하세요.").complete();
+			checkTeamTwoCondition = true;
+		}
+		if (msg.getContentRaw().equals("!조건해제")) {
+			MessageChannel channel = event.getChannel();
+			Message message = channel.sendMessage("<리스트제공>").complete();
+
+		}
+		if (checkTopCondition) {
+			Optional<List<Member>> optional = event.getGuild().getVoiceChannels().stream().filter(
+					channel -> channel.getMembers().stream().anyMatch(member -> member.getId().equals(owner.getId())))
+					.findFirst().map(channel -> channel.getMembers());
+			MessageChannel channel = event.getChannel();
+			long time = System.currentTimeMillis();
+			List<Member> members = optional.get();
+			List<String> nameList = members.stream().map(Bot::getUserName).collect(Collectors.toList());
+			if (msg.getContentRaw().equals("!1")) {
+				topExceptMember.add(nameList.get(0));
+				checkTopCondition = false;
+			}
+			if (msg.getContentRaw().equals("!2")) {
+				topExceptMember.add(nameList.get(1));
+				checkTopCondition = false;
+			}
+			if (msg.getContentRaw().equals("!3")) {
+				topExceptMember.add(nameList.get(2));
+				checkTopCondition = false;
+			}
+			if (msg.getContentRaw().equals("!4")) {
+				topExceptMember.add(nameList.get(3));
+				checkTopCondition = false;
+			}
+			if (msg.getContentRaw().equals("!5")) {
+				topExceptMember.add(nameList.get(4));
+				checkTopCondition = false;
+			}
+			if (msg.getContentRaw().equals("!6")) {
+				topExceptMember.add(nameList.get(5));
+				checkTopCondition = false;
+			}
+			if (msg.getContentRaw().equals("!7")) {
+				topExceptMember.add(nameList.get(6));
+				checkTopCondition = false;
+			}
+			if (msg.getContentRaw().equals("!8")) {
+				topExceptMember.add(nameList.get(7));
+				checkTopCondition = false;
+			}
+			if (msg.getContentRaw().equals("!9")) {
+				topExceptMember.add(nameList.get(8));
+				checkTopCondition = false;
+			}
+			if (msg.getContentRaw().equals("!10")) {
+				topExceptMember.add(nameList.get(9));
+				checkTopCondition = false;
+			}
+		}
+		if (checkJungleCondition) {
+			Optional<List<Member>> optional = event.getGuild().getVoiceChannels().stream().filter(
+					channel -> channel.getMembers().stream().anyMatch(member -> member.getId().equals(owner.getId())))
+					.findFirst().map(channel -> channel.getMembers());
+			MessageChannel channel = event.getChannel();
+			long time = System.currentTimeMillis();
+			List<Member> members = optional.get();
+			List<String> nameList = members.stream().map(Bot::getUserName).collect(Collectors.toList());
+			if (msg.getContentRaw().equals("!1")) {
+				jungleExceptMember.add(nameList.get(0));
+				checkJungleCondition = false;
+			}
+			if (msg.getContentRaw().equals("!2")) {
+				jungleExceptMember.add(nameList.get(1));
+				checkJungleCondition = false;
+			}
+			if (msg.getContentRaw().equals("!3")) {
+				jungleExceptMember.add(nameList.get(2));
+				checkJungleCondition = false;
+			}
+			if (msg.getContentRaw().equals("!4")) {
+				jungleExceptMember.add(nameList.get(3));
+				checkJungleCondition = false;
+			}
+			if (msg.getContentRaw().equals("!5")) {
+				jungleExceptMember.add(nameList.get(4));
+				checkJungleCondition = false;
+			}
+			if (msg.getContentRaw().equals("!6")) {
+				jungleExceptMember.add(nameList.get(5));
+				checkJungleCondition = false;
+			}
+			if (msg.getContentRaw().equals("!7")) {
+				jungleExceptMember.add(nameList.get(6));
+				checkJungleCondition = false;
+			}
+			if (msg.getContentRaw().equals("!8")) {
+				jungleExceptMember.add(nameList.get(7));
+				checkJungleCondition = false;
+			}
+			if (msg.getContentRaw().equals("!9")) {
+				jungleExceptMember.add(nameList.get(8));
+				checkJungleCondition = false;
+			}
+			if (msg.getContentRaw().equals("!10")) {
+				jungleExceptMember.add(nameList.get(9));
+				checkJungleCondition = false;
+			}
+		}
+		if (checkMidCondition) {
+			Optional<List<Member>> optional = event.getGuild().getVoiceChannels().stream().filter(
+					channel -> channel.getMembers().stream().anyMatch(member -> member.getId().equals(owner.getId())))
+					.findFirst().map(channel -> channel.getMembers());
+			MessageChannel channel = event.getChannel();
+			long time = System.currentTimeMillis();
+			List<Member> members = optional.get();
+			List<String> nameList = members.stream().map(Bot::getUserName).collect(Collectors.toList());
+			if (msg.getContentRaw().equals("!1")) {
+				midExceptMember.add(nameList.get(0));
+				checkMidCondition = false;
+			}
+			if (msg.getContentRaw().equals("!2")) {
+				midExceptMember.add(nameList.get(1));
+				checkMidCondition = false;
+			}
+			if (msg.getContentRaw().equals("!3")) {
+				midExceptMember.add(nameList.get(2));
+				checkMidCondition = false;
+			}
+			if (msg.getContentRaw().equals("!4")) {
+				midExceptMember.add(nameList.get(3));
+				checkMidCondition = false;
+			}
+			if (msg.getContentRaw().equals("!5")) {
+				midExceptMember.add(nameList.get(4));
+				checkMidCondition = false;
+			}
+			if (msg.getContentRaw().equals("!6")) {
+				midExceptMember.add(nameList.get(5));
+				checkMidCondition = false;
+			}
+			if (msg.getContentRaw().equals("!7")) {
+				midExceptMember.add(nameList.get(6));
+				checkMidCondition = false;
+			}
+			if (msg.getContentRaw().equals("!8")) {
+				midExceptMember.add(nameList.get(7));
+				checkMidCondition = false;
+			}
+			if (msg.getContentRaw().equals("!9")) {
+				midExceptMember.add(nameList.get(8));
+				checkMidCondition = false;
+			}
+			if (msg.getContentRaw().equals("!10")) {
+				midExceptMember.add(nameList.get(9));
+				checkMidCondition = false;
+			}
+		}
+		if (checkAdcCondition) {
+			Optional<List<Member>> optional = event.getGuild().getVoiceChannels().stream().filter(
+					channel -> channel.getMembers().stream().anyMatch(member -> member.getId().equals(owner.getId())))
+					.findFirst().map(channel -> channel.getMembers());
+			MessageChannel channel = event.getChannel();
+			long time = System.currentTimeMillis();
+			List<Member> members = optional.get();
+			List<String> nameList = members.stream().map(Bot::getUserName).collect(Collectors.toList());
+			if (msg.getContentRaw().equals("!1")) {
+				adcExceptMember.add(nameList.get(0));
+				checkAdcCondition = false;
+			}
+			if (msg.getContentRaw().equals("!2")) {
+				adcExceptMember.add(nameList.get(1));
+				checkAdcCondition = false;
+			}
+			if (msg.getContentRaw().equals("!3")) {
+				adcExceptMember.add(nameList.get(2));
+				checkAdcCondition = false;
+			}
+			if (msg.getContentRaw().equals("!4")) {
+				adcExceptMember.add(nameList.get(3));
+				checkAdcCondition = false;
+			}
+			if (msg.getContentRaw().equals("!5")) {
+				adcExceptMember.add(nameList.get(4));
+				checkAdcCondition = false;
+			}
+			if (msg.getContentRaw().equals("!6")) {
+				adcExceptMember.add(nameList.get(5));
+				checkAdcCondition = false;
+			}
+			if (msg.getContentRaw().equals("!7")) {
+				adcExceptMember.add(nameList.get(6));
+				checkAdcCondition = false;
+			}
+			if (msg.getContentRaw().equals("!8")) {
+				adcExceptMember.add(nameList.get(7));
+				checkAdcCondition = false;
+			}
+			if (msg.getContentRaw().equals("!9")) {
+				adcExceptMember.add(nameList.get(8));
+				checkAdcCondition = false;
+			}
+			if (msg.getContentRaw().equals("!10")) {
+				adcExceptMember.add(nameList.get(9));
+				checkAdcCondition = false;
+			}
+		}
+		if (checkSupportCondition) {
+			Optional<List<Member>> optional = event.getGuild().getVoiceChannels().stream().filter(
+					channel -> channel.getMembers().stream().anyMatch(member -> member.getId().equals(owner.getId())))
+					.findFirst().map(channel -> channel.getMembers());
+			MessageChannel channel = event.getChannel();
+			long time = System.currentTimeMillis();
+			List<Member> members = optional.get();
+			List<String> nameList = members.stream().map(Bot::getUserName).collect(Collectors.toList());
+			if (msg.getContentRaw().equals("!1")) {
+				supportExceptMember.add(nameList.get(0));
+				checkSupportCondition = false;
+			}
+			if (msg.getContentRaw().equals("!2")) {
+				supportExceptMember.add(nameList.get(1));
+				checkSupportCondition = false;
+			}
+			if (msg.getContentRaw().equals("!3")) {
+				supportExceptMember.add(nameList.get(2));
+				checkSupportCondition = false;
+			}
+			if (msg.getContentRaw().equals("!4")) {
+				supportExceptMember.add(nameList.get(3));
+				checkSupportCondition = false;
+			}
+			if (msg.getContentRaw().equals("!5")) {
+				supportExceptMember.add(nameList.get(4));
+				checkSupportCondition = false;
+			}
+			if (msg.getContentRaw().equals("!6")) {
+				supportExceptMember.add(nameList.get(5));
+				checkSupportCondition = false;
+			}
+			if (msg.getContentRaw().equals("!7")) {
+				supportExceptMember.add(nameList.get(6));
+				checkSupportCondition = false;
+			}
+			if (msg.getContentRaw().equals("!8")) {
+				supportExceptMember.add(nameList.get(7));
+				checkSupportCondition = false;
+			}
+			if (msg.getContentRaw().equals("!9")) {
+				supportExceptMember.add(nameList.get(8));
+				checkSupportCondition = false;
+			}
+			if (msg.getContentRaw().equals("!10")) {
+				supportExceptMember.add(nameList.get(9));
+				checkSupportCondition = false;
+			}
+		}
+		if (checkTeamOneCondition) {
+			Optional<List<Member>> optional = event.getGuild().getVoiceChannels().stream().filter(
+					channel -> channel.getMembers().stream().anyMatch(member -> member.getId().equals(owner.getId())))
+					.findFirst().map(channel -> channel.getMembers());
+			MessageChannel channel = event.getChannel();
+			long time = System.currentTimeMillis();
+			List<Member> members = optional.get();
+			List<String> nameList = members.stream().map(Bot::getUserName).collect(Collectors.toList());
+			if (msg.getContentRaw().equals("!1")) {
+				teamOneExceptMember.add(nameList.get(0));
+				checkTeamOneCondition = false;
+			}
+			if (msg.getContentRaw().equals("!2")) {
+				teamOneExceptMember.add(nameList.get(1));
+				checkTeamOneCondition = false;
+			}
+			if (msg.getContentRaw().equals("!3")) {
+				teamOneExceptMember.add(nameList.get(2));
+				checkTeamOneCondition = false;
+			}
+			if (msg.getContentRaw().equals("!4")) {
+				teamOneExceptMember.add(nameList.get(3));
+				checkTeamOneCondition = false;
+			}
+			if (msg.getContentRaw().equals("!5")) {
+				teamOneExceptMember.add(nameList.get(4));
+				checkTeamOneCondition = false;
+			}
+			if (msg.getContentRaw().equals("!6")) {
+				teamOneExceptMember.add(nameList.get(5));
+				checkTeamOneCondition = false;
+			}
+			if (msg.getContentRaw().equals("!7")) {
+				teamOneExceptMember.add(nameList.get(6));
+				checkTeamOneCondition = false;
+			}
+			if (msg.getContentRaw().equals("!8")) {
+				teamOneExceptMember.add(nameList.get(7));
+				checkTeamOneCondition = false;
+			}
+			if (msg.getContentRaw().equals("!9")) {
+				teamOneExceptMember.add(nameList.get(8));
+				checkTeamOneCondition = false;
+			}
+			if (msg.getContentRaw().equals("!10")) {
+				teamOneExceptMember.add(nameList.get(9));
+				checkTeamOneCondition = false;
+			}
+		}
+		if (checkTeamTwoCondition) {
+			Optional<List<Member>> optional = event.getGuild().getVoiceChannels().stream().filter(
+					channel -> channel.getMembers().stream().anyMatch(member -> member.getId().equals(owner.getId())))
+					.findFirst().map(channel -> channel.getMembers());
+			MessageChannel channel = event.getChannel();
+			long time = System.currentTimeMillis();
+			List<Member> members = optional.get();
+			List<String> nameList = members.stream().map(Bot::getUserName).collect(Collectors.toList());
+			if (msg.getContentRaw().equals("!1")) {
+				teamTwoExceptMember.add(nameList.get(0));
+				checkTeamTwoCondition = false;
+			}
+			if (msg.getContentRaw().equals("!2")) {
+				teamTwoExceptMember.add(nameList.get(1));
+				checkTeamTwoCondition = false;
+			}
+			if (msg.getContentRaw().equals("!3")) {
+				teamTwoExceptMember.add(nameList.get(2));
+				checkTeamTwoCondition = false;
+			}
+			if (msg.getContentRaw().equals("!4")) {
+				teamTwoExceptMember.add(nameList.get(3));
+				checkTeamTwoCondition = false;
+			}
+			if (msg.getContentRaw().equals("!5")) {
+				teamTwoExceptMember.add(nameList.get(4));
+				checkTeamTwoCondition = false;
+			}
+			if (msg.getContentRaw().equals("!6")) {
+				teamTwoExceptMember.add(nameList.get(5));
+				checkTeamTwoCondition = false;
+			}
+			if (msg.getContentRaw().equals("!7")) {
+				teamTwoExceptMember.add(nameList.get(6));
+				checkTeamTwoCondition = false;
+			}
+			if (msg.getContentRaw().equals("!8")) {
+				teamTwoExceptMember.add(nameList.get(7));
+				checkTeamTwoCondition = false;
+			}
+			if (msg.getContentRaw().equals("!9")) {
+				teamTwoExceptMember.add(nameList.get(8));
+				checkTeamTwoCondition = false;
+			}
+			if (msg.getContentRaw().equals("!10")) {
+				teamTwoExceptMember.add(nameList.get(9));
+				checkTeamTwoCondition = false;
+			}
+		}
+		if (msg.getContentRaw().equals("!조건사다리")) {
+			Optional<List<Member>> optional = event.getGuild().getVoiceChannels().stream().filter(
+					channel -> channel.getMembers().stream().anyMatch(member -> member.getId().equals(owner.getId())))
+					.findFirst().map(channel -> channel.getMembers());
+			if (optional.isPresent()) {
+				MessageChannel channel = event.getChannel();
+				long time = System.currentTimeMillis();
+				List<Member> members = optional.get();
+				List<String> nameList = members.stream().map(Bot::getUserName).collect(Collectors.toList());
+				if (nameList.size() == 10) {
+					boolean conditionCheck = true;
+					while (conditionCheck) {
+						boolean tmp = true;
+						Collections.shuffle(nameList);
+						for (int i = 0; i < topExceptMember.size(); i++) {
+							if (topExceptMember.get(i) == nameList.get(0)
+									|| topExceptMember.get(i) == nameList.get(5)) {
+								tmp = false;
+							}
+						}
+						if (tmp) {
+							for (int i = 0; i < jungleExceptMember.size(); i++) {
+								if (jungleExceptMember.get(i) == nameList.get(1)
+										|| jungleExceptMember.get(i) == nameList.get(6)) {
+									tmp = false;
+								}
+							}
+						}
+						if (tmp) {
+							for (int i = 0; i < midExceptMember.size(); i++) {
+								if (midExceptMember.get(i) == nameList.get(2)
+										|| midExceptMember.get(i) == nameList.get(7)) {
+									tmp = false;
+								}
+							}
+						}
+						if (tmp) {
+							for (int i = 0; i < adcExceptMember.size(); i++) {
+								if (adcExceptMember.get(i) == nameList.get(3)
+										|| adcExceptMember.get(i) == nameList.get(8)) {
+									tmp = false;
+								}
+							}
+						}
+						if (tmp) {
+							for (int i = 0; i < supportExceptMember.size(); i++) {
+								if (supportExceptMember.get(i) == nameList.get(4)
+										|| supportExceptMember.get(i) == nameList.get(9)) {
+									tmp = false;
+								}
+							}
+						}
+						if (tmp) {
+							for (int i = 0; i < teamOneExceptMember.size(); i++) {
+								for(int j = 0 ; j < 5 ; j++) {
+									if (teamOneExceptMember.get(i) == nameList.get(j)) {
+										tmp = false;
+									}
+								}
+							}
+						}
+						if (tmp) {
+							for (int i = 0; i < teamTwoExceptMember.size(); i++) {
+								for(int j = 0 ; j < 5 ; j++) {
+									if (teamTwoExceptMember.get(i) == nameList.get(j)) {
+										tmp = false;
+									}
+								}
+							}
+						}
+						if(tmp) {
+							conditionCheck = false;
+						}
+					}
+					channel.sendMessage("1팀 top : " + nameList.get(0).toString() + "\n" + "1팀 jug : "
+							+ nameList.get(1).toString() + "\n" + "1팀 mid : " + nameList.get(2).toString() + "\n"
+							+ "1팀 adc : " + nameList.get(3).toString() + "\n" + "1팀 spt : " + nameList.get(4).toString()
+							+ "\n" + "2팀 top : " + nameList.get(5).toString() + "\n" + "2팀 jug : "
+							+ nameList.get(6).toString() + "\n" + "2팀 mid : " + nameList.get(7).toString() + "\n"
+							+ "2팀 adc : " + nameList.get(8).toString() + "\n" + "2팀 spt : "
+							+ nameList.get(9).toString()).queue();
+				}
+			}
 		}
 		if (msg.getContentRaw().equals("!사다리")) {
 			Optional<List<Member>> optional = event.getGuild().getVoiceChannels().stream().filter(
@@ -178,50 +656,41 @@ public class Bot extends ListenerAdapter {
 				long time = System.currentTimeMillis();
 				List<Member> members = optional.get();
 				List<String> nameList = members.stream().map(Bot::getUserName).collect(Collectors.toList());
-				if(nameList.size() == 10) {
+				if (nameList.size() == 10) {
 					Collections.shuffle(nameList);
-					channel.sendMessage("1팀 top : " + nameList.get(0).toString() +"\n"
-							+ "1팀 jug : " + nameList.get(1).toString() +"\n"
-							+ "1팀 mid : " + nameList.get(2).toString() +"\n"
-							+ "1팀 adc : " + nameList.get(3).toString() +"\n"
-							+ "1팀 spt : " + nameList.get(4).toString() +"\n"
-							+ "2팀 top : " + nameList.get(5).toString() +"\n"
-							+ "2팀 jug : " + nameList.get(6).toString() +"\n"
-							+ "2팀 mid : " + nameList.get(7).toString() +"\n"
-							+ "2팀 adj : " + nameList.get(8).toString() +"\n"
-							+ "2팀 spt : " + nameList.get(9).toString()).queue();
-				}
-				else if(nameList.size() == 9) {
+					channel.sendMessage("1팀 top : " + nameList.get(0).toString() + "\n" + "1팀 jug : "
+							+ nameList.get(1).toString() + "\n" + "1팀 mid : " + nameList.get(2).toString() + "\n"
+							+ "1팀 adc : " + nameList.get(3).toString() + "\n" + "1팀 spt : " + nameList.get(4).toString()
+							+ "\n" + "2팀 top : " + nameList.get(5).toString() + "\n" + "2팀 jug : "
+							+ nameList.get(6).toString() + "\n" + "2팀 mid : " + nameList.get(7).toString() + "\n"
+							+ "2팀 adc : " + nameList.get(8).toString() + "\n" + "2팀 spt : "
+							+ nameList.get(9).toString()).queue();
+				} else if (nameList.size() == 9) {
 					nameList.add("지각생");
 					Collections.shuffle(nameList);
-					channel.sendMessage("1팀 top : " + nameList.get(0).toString()).queue();
-					channel.sendMessage("1팀 jug : " + nameList.get(1).toString()).queue();
-					channel.sendMessage("1팀 mid : " + nameList.get(2).toString()).queue();
-					channel.sendMessage("1팀 adc : " + nameList.get(3).toString()).queue();
-					channel.sendMessage("1팀 spt : " + nameList.get(4).toString()).queue();
-					channel.sendMessage("2팀 top : " + nameList.get(5).toString()).queue();
-					channel.sendMessage("2팀 jug : " + nameList.get(6).toString()).queue();
-					channel.sendMessage("2팀 mid : " + nameList.get(7).toString()).queue();
-					channel.sendMessage("2팀 adc : " + nameList.get(8).toString()).queue();
-					channel.sendMessage("2팀 spt : " + nameList.get(9).toString()).queue();
-					for(int i = 0 ; i < 10 ; i++) {
-						if(nameList.get(i).toString() == "지각생") {
+					channel.sendMessage("1팀 top : " + nameList.get(0).toString() + "\n" + "1팀 jug : "
+							+ nameList.get(1).toString() + "\n" + "1팀 mid : " + nameList.get(2).toString() + "\n"
+							+ "1팀 adc : " + nameList.get(3).toString() + "\n" + "1팀 spt : " + nameList.get(4).toString()
+							+ "\n" + "2팀 top : " + nameList.get(5).toString() + "\n" + "2팀 jug : "
+							+ nameList.get(6).toString() + "\n" + "2팀 mid : " + nameList.get(7).toString() + "\n"
+							+ "2팀 adc : " + nameList.get(8).toString() + "\n" + "2팀 spt : "
+							+ nameList.get(9).toString()).queue();
+					for (int i = 0; i < 10; i++) {
+						if (nameList.get(i).toString() == "지각생") {
 							nameList.remove(i);
 						}
 					}
-				}
-				else if(nameList.size() < 9) {
+				} else if (nameList.size() < 9) {
 					channel.sendMessage("사람이 부족합니다. 팀만 나눌께요.").queue();
 					Collections.shuffle(nameList);
-					int tmpNum = nameList.size()/2;
-					for(int i = 0 ; i < tmpNum ; i++) {
+					int tmpNum = nameList.size() / 2;
+					for (int i = 0; i < tmpNum; i++) {
 						channel.sendMessage("1팀 : " + nameList.get(i).toString()).queue();
 					}
-					for(int i = tmpNum ; i < nameList.size(); i++) {
+					for (int i = tmpNum; i < nameList.size(); i++) {
 						channel.sendMessage("2팀 : " + nameList.get(i).toString()).queue();
 					}
-				}
-				else if(nameList.size() > 10) {
+				} else if (nameList.size() > 10) {
 					channel.sendMessage("사람이 너무 많아서 10명까지만 채우고 나머지는 관전이에요.").queue();
 					channel.sendMessage("1팀 top : " + nameList.get(0).toString()).queue();
 					channel.sendMessage("1팀 jug : " + nameList.get(1).toString()).queue();
@@ -233,12 +702,11 @@ public class Bot extends ListenerAdapter {
 					channel.sendMessage("2팀 mid : " + nameList.get(7).toString()).queue();
 					channel.sendMessage("2팀 adc : " + nameList.get(8).toString()).queue();
 					channel.sendMessage("2팀 spt : " + nameList.get(9).toString()).queue();
-					for (int i = 10 ; i < nameList.size() ; i++) {
+					for (int i = 10; i < nameList.size(); i++) {
 						channel.sendMessage("관전 : " + nameList.get(i).toString()).queue();
 					}
 				}
-			}
-			else{
+			} else {
 				MessageChannel channel = event.getChannel();
 				channel.sendMessage("사람이 없는데요...?").queue();
 			}
