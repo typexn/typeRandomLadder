@@ -217,8 +217,21 @@ public class Bot extends ListenerAdapter {
 		}
 		if (msg.getContentRaw().equals("!조건해제")) {
 			MessageChannel channel = event.getChannel();
-			Message message = channel.sendMessage("<리스트제공>").complete();
-
+			Message message = channel.sendMessage("조건을 초기화합니다.").complete();
+			topExceptMember.clear();
+			jungleExceptMember.clear();
+			midExceptMember.clear();
+			adcExceptMember.clear();
+			supportExceptMember.clear();
+			teamOneExceptMember.clear();
+			teamTwoExceptMember.clear();
+			checkTopCondition = false;
+			checkJungleCondition = false;
+			checkMidCondition = false;
+			checkAdcCondition = false;
+			checkSupportCondition = false;
+			checkTeamOneCondition = false;
+			checkTeamTwoCondition = false;
 		}
 		if (checkTopCondition) {
 			Optional<List<Member>> optional = event.getGuild().getVoiceChannels().stream().filter(
@@ -230,42 +243,52 @@ public class Bot extends ListenerAdapter {
 			List<String> nameList = members.stream().map(Bot::getUserName).collect(Collectors.toList());
 			if (msg.getContentRaw().equals("!1")) {
 				topExceptMember.add(nameList.get(0));
+				Message message = channel.sendMessage("탑 제외인원에 추가했습니다.").complete();
 				checkTopCondition = false;
 			}
 			if (msg.getContentRaw().equals("!2")) {
 				topExceptMember.add(nameList.get(1));
+				Message message = channel.sendMessage("탑 제외인원에 추가했습니다.").complete();
 				checkTopCondition = false;
 			}
 			if (msg.getContentRaw().equals("!3")) {
 				topExceptMember.add(nameList.get(2));
+				Message message = channel.sendMessage("탑 제외인원에 추가했습니다.").complete();
 				checkTopCondition = false;
 			}
 			if (msg.getContentRaw().equals("!4")) {
 				topExceptMember.add(nameList.get(3));
+				Message message = channel.sendMessage("탑 제외인원에 추가했습니다.").complete();
 				checkTopCondition = false;
 			}
 			if (msg.getContentRaw().equals("!5")) {
 				topExceptMember.add(nameList.get(4));
+				Message message = channel.sendMessage("탑 제외인원에 추가했습니다.").complete();
 				checkTopCondition = false;
 			}
 			if (msg.getContentRaw().equals("!6")) {
 				topExceptMember.add(nameList.get(5));
+				Message message = channel.sendMessage("탑 제외인원에 추가했습니다.").complete();
 				checkTopCondition = false;
 			}
 			if (msg.getContentRaw().equals("!7")) {
 				topExceptMember.add(nameList.get(6));
+				Message message = channel.sendMessage("탑 제외인원에 추가했습니다.").complete();
 				checkTopCondition = false;
 			}
 			if (msg.getContentRaw().equals("!8")) {
 				topExceptMember.add(nameList.get(7));
+				Message message = channel.sendMessage("탑 제외인원에 추가했습니다.").complete();
 				checkTopCondition = false;
 			}
 			if (msg.getContentRaw().equals("!9")) {
 				topExceptMember.add(nameList.get(8));
+				Message message = channel.sendMessage("탑 제외인원에 추가했습니다.").complete();
 				checkTopCondition = false;
 			}
 			if (msg.getContentRaw().equals("!10")) {
 				topExceptMember.add(nameList.get(9));
+				Message message = channel.sendMessage("탑 제외인원에 추가했습니다.").complete();
 				checkTopCondition = false;
 			}
 		}
@@ -279,42 +302,52 @@ public class Bot extends ListenerAdapter {
 			List<String> nameList = members.stream().map(Bot::getUserName).collect(Collectors.toList());
 			if (msg.getContentRaw().equals("!1")) {
 				jungleExceptMember.add(nameList.get(0));
+				Message message = channel.sendMessage("정글 제외인원에 추가했습니다.").complete();
 				checkJungleCondition = false;
 			}
 			if (msg.getContentRaw().equals("!2")) {
 				jungleExceptMember.add(nameList.get(1));
+				Message message = channel.sendMessage("정글 제외인원에 추가했습니다.").complete();
 				checkJungleCondition = false;
 			}
 			if (msg.getContentRaw().equals("!3")) {
 				jungleExceptMember.add(nameList.get(2));
+				Message message = channel.sendMessage("정글 제외인원에 추가했습니다.").complete();
 				checkJungleCondition = false;
 			}
 			if (msg.getContentRaw().equals("!4")) {
 				jungleExceptMember.add(nameList.get(3));
+				Message message = channel.sendMessage("정글 제외인원에 추가했습니다.").complete();
 				checkJungleCondition = false;
 			}
 			if (msg.getContentRaw().equals("!5")) {
 				jungleExceptMember.add(nameList.get(4));
+				Message message = channel.sendMessage("정글 제외인원에 추가했습니다.").complete();
 				checkJungleCondition = false;
 			}
 			if (msg.getContentRaw().equals("!6")) {
 				jungleExceptMember.add(nameList.get(5));
+				Message message = channel.sendMessage("정글 제외인원에 추가했습니다.").complete();
 				checkJungleCondition = false;
 			}
 			if (msg.getContentRaw().equals("!7")) {
 				jungleExceptMember.add(nameList.get(6));
+				Message message = channel.sendMessage("정글 제외인원에 추가했습니다.").complete();
 				checkJungleCondition = false;
 			}
 			if (msg.getContentRaw().equals("!8")) {
 				jungleExceptMember.add(nameList.get(7));
+				Message message = channel.sendMessage("정글 제외인원에 추가했습니다.").complete();
 				checkJungleCondition = false;
 			}
 			if (msg.getContentRaw().equals("!9")) {
 				jungleExceptMember.add(nameList.get(8));
+				Message message = channel.sendMessage("정글 제외인원에 추가했습니다.").complete();
 				checkJungleCondition = false;
 			}
 			if (msg.getContentRaw().equals("!10")) {
 				jungleExceptMember.add(nameList.get(9));
+				Message message = channel.sendMessage("정글 제외인원에 추가했습니다.").complete();
 				checkJungleCondition = false;
 			}
 		}
@@ -328,42 +361,52 @@ public class Bot extends ListenerAdapter {
 			List<String> nameList = members.stream().map(Bot::getUserName).collect(Collectors.toList());
 			if (msg.getContentRaw().equals("!1")) {
 				midExceptMember.add(nameList.get(0));
+				Message message = channel.sendMessage("미드 제외인원에 추가했습니다.").complete();
 				checkMidCondition = false;
 			}
 			if (msg.getContentRaw().equals("!2")) {
 				midExceptMember.add(nameList.get(1));
+				Message message = channel.sendMessage("미드 제외인원에 추가했습니다.").complete();
 				checkMidCondition = false;
 			}
 			if (msg.getContentRaw().equals("!3")) {
 				midExceptMember.add(nameList.get(2));
+				Message message = channel.sendMessage("미드 제외인원에 추가했습니다.").complete();
 				checkMidCondition = false;
 			}
 			if (msg.getContentRaw().equals("!4")) {
 				midExceptMember.add(nameList.get(3));
+				Message message = channel.sendMessage("미드 제외인원에 추가했습니다.").complete();
 				checkMidCondition = false;
 			}
 			if (msg.getContentRaw().equals("!5")) {
 				midExceptMember.add(nameList.get(4));
+				Message message = channel.sendMessage("미드 제외인원에 추가했습니다.").complete();
 				checkMidCondition = false;
 			}
 			if (msg.getContentRaw().equals("!6")) {
 				midExceptMember.add(nameList.get(5));
+				Message message = channel.sendMessage("미드 제외인원에 추가했습니다.").complete();
 				checkMidCondition = false;
 			}
 			if (msg.getContentRaw().equals("!7")) {
 				midExceptMember.add(nameList.get(6));
+				Message message = channel.sendMessage("미드 제외인원에 추가했습니다.").complete();
 				checkMidCondition = false;
 			}
 			if (msg.getContentRaw().equals("!8")) {
 				midExceptMember.add(nameList.get(7));
+				Message message = channel.sendMessage("미드 제외인원에 추가했습니다.").complete();
 				checkMidCondition = false;
 			}
 			if (msg.getContentRaw().equals("!9")) {
 				midExceptMember.add(nameList.get(8));
+				Message message = channel.sendMessage("미드 제외인원에 추가했습니다.").complete();
 				checkMidCondition = false;
 			}
 			if (msg.getContentRaw().equals("!10")) {
 				midExceptMember.add(nameList.get(9));
+				Message message = channel.sendMessage("미드 제외인원에 추가했습니다.").complete();
 				checkMidCondition = false;
 			}
 		}
@@ -377,42 +420,52 @@ public class Bot extends ListenerAdapter {
 			List<String> nameList = members.stream().map(Bot::getUserName).collect(Collectors.toList());
 			if (msg.getContentRaw().equals("!1")) {
 				adcExceptMember.add(nameList.get(0));
+				Message message = channel.sendMessage("원딜 제외인원에 추가했습니다.").complete();
 				checkAdcCondition = false;
 			}
 			if (msg.getContentRaw().equals("!2")) {
 				adcExceptMember.add(nameList.get(1));
+				Message message = channel.sendMessage("원딜 제외인원에 추가했습니다.").complete();
 				checkAdcCondition = false;
 			}
 			if (msg.getContentRaw().equals("!3")) {
 				adcExceptMember.add(nameList.get(2));
+				Message message = channel.sendMessage("원딜 제외인원에 추가했습니다.").complete();
 				checkAdcCondition = false;
 			}
 			if (msg.getContentRaw().equals("!4")) {
 				adcExceptMember.add(nameList.get(3));
+				Message message = channel.sendMessage("원딜 제외인원에 추가했습니다.").complete();
 				checkAdcCondition = false;
 			}
 			if (msg.getContentRaw().equals("!5")) {
 				adcExceptMember.add(nameList.get(4));
+				Message message = channel.sendMessage("원딜 제외인원에 추가했습니다.").complete();
 				checkAdcCondition = false;
 			}
 			if (msg.getContentRaw().equals("!6")) {
 				adcExceptMember.add(nameList.get(5));
+				Message message = channel.sendMessage("원딜 제외인원에 추가했습니다.").complete();
 				checkAdcCondition = false;
 			}
 			if (msg.getContentRaw().equals("!7")) {
 				adcExceptMember.add(nameList.get(6));
+				Message message = channel.sendMessage("원딜 제외인원에 추가했습니다.").complete();
 				checkAdcCondition = false;
 			}
 			if (msg.getContentRaw().equals("!8")) {
 				adcExceptMember.add(nameList.get(7));
+				Message message = channel.sendMessage("원딜 제외인원에 추가했습니다.").complete();
 				checkAdcCondition = false;
 			}
 			if (msg.getContentRaw().equals("!9")) {
 				adcExceptMember.add(nameList.get(8));
+				Message message = channel.sendMessage("원딜 제외인원에 추가했습니다.").complete();
 				checkAdcCondition = false;
 			}
 			if (msg.getContentRaw().equals("!10")) {
 				adcExceptMember.add(nameList.get(9));
+				Message message = channel.sendMessage("원딜 제외인원에 추가했습니다.").complete();
 				checkAdcCondition = false;
 			}
 		}
@@ -426,42 +479,52 @@ public class Bot extends ListenerAdapter {
 			List<String> nameList = members.stream().map(Bot::getUserName).collect(Collectors.toList());
 			if (msg.getContentRaw().equals("!1")) {
 				supportExceptMember.add(nameList.get(0));
+				Message message = channel.sendMessage("서폿 제외인원에 추가했습니다.").complete();
 				checkSupportCondition = false;
 			}
 			if (msg.getContentRaw().equals("!2")) {
 				supportExceptMember.add(nameList.get(1));
+				Message message = channel.sendMessage("서폿 제외인원에 추가했습니다.").complete();
 				checkSupportCondition = false;
 			}
 			if (msg.getContentRaw().equals("!3")) {
 				supportExceptMember.add(nameList.get(2));
+				Message message = channel.sendMessage("서폿 제외인원에 추가했습니다.").complete();
 				checkSupportCondition = false;
 			}
 			if (msg.getContentRaw().equals("!4")) {
 				supportExceptMember.add(nameList.get(3));
+				Message message = channel.sendMessage("서폿 제외인원에 추가했습니다.").complete();
 				checkSupportCondition = false;
 			}
 			if (msg.getContentRaw().equals("!5")) {
 				supportExceptMember.add(nameList.get(4));
+				Message message = channel.sendMessage("서폿 제외인원에 추가했습니다.").complete();
 				checkSupportCondition = false;
 			}
 			if (msg.getContentRaw().equals("!6")) {
 				supportExceptMember.add(nameList.get(5));
+				Message message = channel.sendMessage("서폿 제외인원에 추가했습니다.").complete();
 				checkSupportCondition = false;
 			}
 			if (msg.getContentRaw().equals("!7")) {
 				supportExceptMember.add(nameList.get(6));
+				Message message = channel.sendMessage("서폿 제외인원에 추가했습니다.").complete();
 				checkSupportCondition = false;
 			}
 			if (msg.getContentRaw().equals("!8")) {
 				supportExceptMember.add(nameList.get(7));
+				Message message = channel.sendMessage("서폿 제외인원에 추가했습니다.").complete();
 				checkSupportCondition = false;
 			}
 			if (msg.getContentRaw().equals("!9")) {
 				supportExceptMember.add(nameList.get(8));
+				Message message = channel.sendMessage("서폿 제외인원에 추가했습니다.").complete();
 				checkSupportCondition = false;
 			}
 			if (msg.getContentRaw().equals("!10")) {
 				supportExceptMember.add(nameList.get(9));
+				Message message = channel.sendMessage("서폿 제외인원에 추가했습니다.").complete();
 				checkSupportCondition = false;
 			}
 		}
@@ -475,42 +538,52 @@ public class Bot extends ListenerAdapter {
 			List<String> nameList = members.stream().map(Bot::getUserName).collect(Collectors.toList());
 			if (msg.getContentRaw().equals("!1")) {
 				teamOneExceptMember.add(nameList.get(0));
+				Message message = channel.sendMessage("1팀에 추가했습니다.").complete();
 				checkTeamOneCondition = false;
 			}
 			if (msg.getContentRaw().equals("!2")) {
 				teamOneExceptMember.add(nameList.get(1));
+				Message message = channel.sendMessage("1팀에 추가했습니다.").complete();
 				checkTeamOneCondition = false;
 			}
 			if (msg.getContentRaw().equals("!3")) {
 				teamOneExceptMember.add(nameList.get(2));
+				Message message = channel.sendMessage("1팀에 추가했습니다.").complete();
 				checkTeamOneCondition = false;
 			}
 			if (msg.getContentRaw().equals("!4")) {
 				teamOneExceptMember.add(nameList.get(3));
+				Message message = channel.sendMessage("1팀에 추가했습니다.").complete();
 				checkTeamOneCondition = false;
 			}
 			if (msg.getContentRaw().equals("!5")) {
 				teamOneExceptMember.add(nameList.get(4));
+				Message message = channel.sendMessage("1팀에 추가했습니다.").complete();
 				checkTeamOneCondition = false;
 			}
 			if (msg.getContentRaw().equals("!6")) {
 				teamOneExceptMember.add(nameList.get(5));
+				Message message = channel.sendMessage("1팀에 추가했습니다.").complete();
 				checkTeamOneCondition = false;
 			}
 			if (msg.getContentRaw().equals("!7")) {
 				teamOneExceptMember.add(nameList.get(6));
+				Message message = channel.sendMessage("1팀에 추가했습니다.").complete();
 				checkTeamOneCondition = false;
 			}
 			if (msg.getContentRaw().equals("!8")) {
 				teamOneExceptMember.add(nameList.get(7));
+				Message message = channel.sendMessage("1팀에 추가했습니다.").complete();
 				checkTeamOneCondition = false;
 			}
 			if (msg.getContentRaw().equals("!9")) {
 				teamOneExceptMember.add(nameList.get(8));
+				Message message = channel.sendMessage("1팀에 추가했습니다.").complete();
 				checkTeamOneCondition = false;
 			}
 			if (msg.getContentRaw().equals("!10")) {
 				teamOneExceptMember.add(nameList.get(9));
+				Message message = channel.sendMessage("1팀에 추가했습니다.").complete();
 				checkTeamOneCondition = false;
 			}
 		}
@@ -524,42 +597,52 @@ public class Bot extends ListenerAdapter {
 			List<String> nameList = members.stream().map(Bot::getUserName).collect(Collectors.toList());
 			if (msg.getContentRaw().equals("!1")) {
 				teamTwoExceptMember.add(nameList.get(0));
+				Message message = channel.sendMessage("2팀에 추가했습니다.").complete();
 				checkTeamTwoCondition = false;
 			}
 			if (msg.getContentRaw().equals("!2")) {
 				teamTwoExceptMember.add(nameList.get(1));
+				Message message = channel.sendMessage("2팀에 추가했습니다.").complete();
 				checkTeamTwoCondition = false;
 			}
 			if (msg.getContentRaw().equals("!3")) {
 				teamTwoExceptMember.add(nameList.get(2));
+				Message message = channel.sendMessage("2팀에 추가했습니다.").complete();
 				checkTeamTwoCondition = false;
 			}
 			if (msg.getContentRaw().equals("!4")) {
 				teamTwoExceptMember.add(nameList.get(3));
+				Message message = channel.sendMessage("2팀에 추가했습니다.").complete();
 				checkTeamTwoCondition = false;
 			}
 			if (msg.getContentRaw().equals("!5")) {
 				teamTwoExceptMember.add(nameList.get(4));
+				Message message = channel.sendMessage("2팀에 추가했습니다.").complete();
 				checkTeamTwoCondition = false;
 			}
 			if (msg.getContentRaw().equals("!6")) {
 				teamTwoExceptMember.add(nameList.get(5));
+				Message message = channel.sendMessage("2팀에 추가했습니다.").complete();
 				checkTeamTwoCondition = false;
 			}
 			if (msg.getContentRaw().equals("!7")) {
 				teamTwoExceptMember.add(nameList.get(6));
+				Message message = channel.sendMessage("2팀에 추가했습니다.").complete();
 				checkTeamTwoCondition = false;
 			}
 			if (msg.getContentRaw().equals("!8")) {
 				teamTwoExceptMember.add(nameList.get(7));
+				Message message = channel.sendMessage("2팀에 추가했습니다.").complete();
 				checkTeamTwoCondition = false;
 			}
 			if (msg.getContentRaw().equals("!9")) {
 				teamTwoExceptMember.add(nameList.get(8));
+				Message message = channel.sendMessage("2팀에 추가했습니다.").complete();
 				checkTeamTwoCondition = false;
 			}
 			if (msg.getContentRaw().equals("!10")) {
 				teamTwoExceptMember.add(nameList.get(9));
+				Message message = channel.sendMessage("2팀에 추가했습니다.").complete();
 				checkTeamTwoCondition = false;
 			}
 		}
@@ -644,6 +727,8 @@ public class Bot extends ListenerAdapter {
 							+ nameList.get(6).toString() + "\n" + "2팀 mid : " + nameList.get(7).toString() + "\n"
 							+ "2팀 adc : " + nameList.get(8).toString() + "\n" + "2팀 spt : "
 							+ nameList.get(9).toString()).queue();
+				} else {
+					channel.sendMessage("사람이 부족합니다...").queue();
 				}
 			}
 		}
