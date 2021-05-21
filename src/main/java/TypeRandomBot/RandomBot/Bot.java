@@ -253,37 +253,37 @@ public class Bot extends ListenerAdapter {
 				tmp = false;
 			}
 			if(jungleExceptMember.size() > 0) {
-				for(int i = 0 ; i < topExceptMember.size() ; i++) {
+				for(int i = 0 ; i < jungleExceptMember.size() ; i++) {
 					Message message = channel.sendMessage("정글 제외자 : " + jungleExceptMember.get(i)).complete();
 				}
 				tmp = false;
 			}
 			if(midExceptMember.size() > 0) {
-				for(int i = 0 ; i < topExceptMember.size() ; i++) {
+				for(int i = 0 ; i < midExceptMember.size() ; i++) {
 					Message message = channel.sendMessage("미드 제외자 : " + midExceptMember.get(i)).complete();
 				}
 				tmp = false;
 			}
 			if(adcExceptMember.size() > 0) {
-				for(int i = 0 ; i < topExceptMember.size() ; i++) {
+				for(int i = 0 ; i < adcExceptMember.size() ; i++) {
 					Message message = channel.sendMessage("숟가락 제외자 : " + adcExceptMember.get(i)).complete();
 				}
 				tmp = false;
 			}
 			if(supportExceptMember.size() > 0) {
-				for(int i = 0 ; i < topExceptMember.size() ; i++) {
+				for(int i = 0 ; i < supportExceptMember.size() ; i++) {
 					Message message = channel.sendMessage("도구 제외자 : " + supportExceptMember.get(i)).complete();
 				}
 				tmp = false;
 			}
 			if(teamOneExceptMember.size() > 0) {
-				for(int i = 0 ; i < topExceptMember.size() ; i++) {
+				for(int i = 0 ; i < teamOneExceptMember.size() ; i++) {
 					Message message = channel.sendMessage("팀1 : " + teamOneExceptMember.get(i)).complete();
 				}
 				tmp = false;
 			}
 			if(teamTwoExceptMember.size() > 0) {
-				for(int i = 0 ; i < topExceptMember.size() ; i++) {
+				for(int i = 0 ; i < teamTwoExceptMember.size() ; i++) {
 					Message message = channel.sendMessage("팀2 : " + teamTwoExceptMember.get(i)).complete();
 				}
 				tmp = false;
