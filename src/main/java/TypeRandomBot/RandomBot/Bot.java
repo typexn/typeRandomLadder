@@ -28,6 +28,14 @@ public class Bot extends ListenerAdapter {
 	boolean checkSupportCondition = false;
 	boolean checkTeamOneCondition = false;
 	boolean checkTeamTwoCondition = false;
+	
+	ArrayList<String> topExceptMember = new ArrayList<>();
+	ArrayList<String> jungleExceptMember = new ArrayList<>();
+	ArrayList<String> midExceptMember = new ArrayList<>();
+	ArrayList<String> adcExceptMember = new ArrayList<>();
+	ArrayList<String> supportExceptMember = new ArrayList<>();
+	ArrayList<String> teamOneExceptMember = new ArrayList<>();
+	ArrayList<String> teamTwoExceptMember = new ArrayList<>();
 
 	public static String getUserName(Member member) {
 		String userName = member.getNickname();
@@ -57,13 +65,7 @@ public class Bot extends ListenerAdapter {
 	public void onMessageReceived(MessageReceivedEvent event) {
 		Message msg = event.getMessage();
 		Member owner = event.getMember();
-		ArrayList<String> topExceptMember = new ArrayList<>();
-		ArrayList<String> jungleExceptMember = new ArrayList<>();
-		ArrayList<String> midExceptMember = new ArrayList<>();
-		ArrayList<String> adcExceptMember = new ArrayList<>();
-		ArrayList<String> supportExceptMember = new ArrayList<>();
-		ArrayList<String> teamOneExceptMember = new ArrayList<>();
-		ArrayList<String> teamTwoExceptMember = new ArrayList<>();
+
 		if (msg.getContentRaw().equals("!ping")) {
 			MessageChannel channel = event.getChannel();
 			channel.sendMessage("그런기능 안추가했어요").queue();
