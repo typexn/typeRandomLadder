@@ -78,7 +78,7 @@ public class Bot extends ListenerAdapter {
 		}
 		if (msg.getContentRaw().equals("!윤영섭")) {
 			MessageChannel channel = event.getChannel();
-			channel.sendMessage("Master. 키아나. 랜덤픽").queue();
+			channel.sendMessage("cex").queue();
 		}
 		if (msg.getContentRaw().equals("!도치임")) {
 			MessageChannel channel = event.getChannel();
@@ -106,11 +106,11 @@ public class Bot extends ListenerAdapter {
 		}
 		if (msg.getContentRaw().equals("!차승훈")) {
 			MessageChannel channel = event.getChannel();
-			channel.sendMessage("케넨, 요네, 야스오, 이렐리아, 카시오페아, 루시안, 에코").queue();
+			channel.sendMessage("케넨, 요네, 야스오, 이렐리아, 카시오페아, 루시안, 킨드레드(정글), 케인(정글)").queue();
 		}
 		if (msg.getContentRaw().equals("!김지혁")) {
 			MessageChannel channel = event.getChannel();
-			channel.sendMessage("샤코, 다리우스, 말파이트, 칼리스타, 람머스, 나르, 코그모(칼바람)").queue();
+			channel.sendMessage("샤코, 다리우스, 말파이트(요즘X), 칼리스타(요즘X), 람머스, 나르(요즘X), 코그모(칼바람)").queue();
 		}
 		if (msg.getContentRaw().equals("!양희권")) {
 			MessageChannel channel = event.getChannel();
@@ -122,11 +122,15 @@ public class Bot extends ListenerAdapter {
 		}
 		if (msg.getContentRaw().equals("!이주연")) {
 			MessageChannel channel = event.getChannel();
-			channel.sendMessage("야 철 코. ^0^").queue();
+			channel.sendMessage("자이라, 세라핀, 세나. ^0^").queue();
 		}
 		if (msg.getContentRaw().equals("!상은")) {
 			MessageChannel channel = event.getChannel();
 			channel.sendMessage("데이터가 부족해요.").queue();
+		}
+		if (msg.getContentRaw().equals("!김혜인")) {
+			MessageChannel channel = event.getChannel();
+			channel.sendMessage("HYEINISM").queue();
 		}
 		if (msg.getContentRaw().equals("!김태경")) {
 			MessageChannel channel = event.getChannel();
@@ -180,6 +184,10 @@ public class Bot extends ListenerAdapter {
 			MessageChannel channel = event.getChannel();
 			channel.sendMessage("제드, 엘리스, 루시안").queue();
 		}
+		if (msg.getContentRaw().equals("!cex")) {
+			MessageChannel channel = event.getChannel();
+			channel.sendMessage("느금마 ㅋ").queue();
+		}
 		if (msg.getContentRaw().equals("!조건 탑")) {
 			MessageChannel channel = event.getChannel();
 			Message message = channel.sendMessage("탑에서 제외할 사람의 번호를 입력하세요.").complete();
@@ -232,6 +240,55 @@ public class Bot extends ListenerAdapter {
 			checkSupportCondition = false;
 			checkTeamOneCondition = false;
 			checkTeamTwoCondition = false;
+		}
+		if (msg.getContentRaw().equals("!조건확인")) {
+			MessageChannel channel = event.getChannel();
+			boolean tmp = true;
+			if(topExceptMember.size() > 0) {
+				for(int i = 0 ; i < topExceptMember.size() ; i++) {
+					Message message = channel.sendMessage("탑 제외자 : " + topExceptMember.get(i)).complete();
+				}
+				tmp = false;
+			}
+			if(jungleExceptMember.size() > 0) {
+				for(int i = 0 ; i < topExceptMember.size() ; i++) {
+					Message message = channel.sendMessage("정글 제외자 : " + jungleExceptMember.get(i)).complete();
+				}
+				tmp = false;
+			}
+			if(midExceptMember.size() > 0) {
+				for(int i = 0 ; i < topExceptMember.size() ; i++) {
+					Message message = channel.sendMessage("미드 제외자 : " + midExceptMember.get(i)).complete();
+				}
+				tmp = false;
+			}
+			if(adcExceptMember.size() > 0) {
+				for(int i = 0 ; i < topExceptMember.size() ; i++) {
+					Message message = channel.sendMessage("숟가락 제외자 : " + adcExceptMember.get(i)).complete();
+				}
+				tmp = false;
+			}
+			if(supportExceptMember.size() > 0) {
+				for(int i = 0 ; i < topExceptMember.size() ; i++) {
+					Message message = channel.sendMessage("도구 제외자 : " + supportExceptMember.get(i)).complete();
+				}
+				tmp = false;
+			}
+			if(teamOneExceptMember.size() > 0) {
+				for(int i = 0 ; i < topExceptMember.size() ; i++) {
+					Message message = channel.sendMessage("팀1 : " + teamOneExceptMember.get(i)).complete();
+				}
+				tmp = false;
+			}
+			if(teamTwoExceptMember.size() > 0) {
+				for(int i = 0 ; i < topExceptMember.size() ; i++) {
+					Message message = channel.sendMessage("팀2 : " + teamTwoExceptMember.get(i)).complete();
+				}
+				tmp = false;
+			}
+			if(tmp) {
+				Message message = channel.sendMessage("조건이 비어있습니다.").complete();
+			}
 		}
 		if (checkTopCondition) {
 			Optional<List<Member>> optional = event.getGuild().getVoiceChannels().stream().filter(
