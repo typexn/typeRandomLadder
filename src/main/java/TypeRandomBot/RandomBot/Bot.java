@@ -190,6 +190,21 @@ public class Bot extends ListenerAdapter {
 			MessageChannel channel = event.getChannel();
 			channel.sendMessage("느금마 ㅋ").queue();
 		}
+		if (msg.getContentRaw().equals("!번호확인")) {
+			Optional<List<Member>> optional = event.getGuild().getVoiceChannels().stream().filter(
+					channel -> channel.getMembers().stream().anyMatch(member -> member.getId().equals(owner.getId())))
+					.findFirst().map(channel -> channel.getMembers());
+			if (optional.isPresent()) {
+				MessageChannel channel = event.getChannel();
+				long time = System.currentTimeMillis();
+				List<Member> members = optional.get();
+				List<String> nameList = members.stream().map(Bot::getUserName).collect(Collectors.toList());
+				
+				for(int i = 0 ; i < nameList.size() ; i++) {
+					channel.sendMessage((i) + " : " + nameList.get(i)).queue();
+				}
+			}
+		}
 		if (msg.getContentRaw().equals("!조건 탑")) {
 			MessageChannel channel = event.getChannel();
 			Message message = channel.sendMessage("탑에서 제외할 사람의 번호를 입력하세요.").complete();
